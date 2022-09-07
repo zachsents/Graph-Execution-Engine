@@ -1,0 +1,78 @@
+{
+    "nodes": [
+        {
+            "id": "intervalPeriod",
+            "type": "Number",
+            "state": 3000
+        },
+        {
+            "id": "interval",
+            "type": "Interval"
+        },
+        {
+            "id": "log",
+            "type": "Log"
+        },
+        {
+            "id": "bind",
+            "type": "Bind"
+        },
+        {
+            "id": "rand",
+            "type": "RandomNumber"
+        },
+        {
+            "id": "delay",
+            "type": "Delay"
+        },
+        {
+            "id": "delayTime",
+            "type": "Number",
+            "state": 800
+        }
+    ],
+    "edges": [
+        {
+            "source": "intervalPeriod",
+            "target": "interval",
+            "sourceHandle": "intervalPeriod- ",
+            "targetHandle": "interval-period"
+        },
+        {
+            "source": "interval",
+            "target": "bind",
+            "sourceHandle": "interval- ",
+            "targetHandle": "bind-signal"
+        },
+        {
+            "source": "bind",
+            "target": "log",
+            "sourceHandle": "bind-out",
+            "targetHandle": "log- "
+        },
+        {
+            "source": "rand",
+            "target": "bind",
+            "sourceHandle": "rand- ",
+            "targetHandle": "bind-value"
+        },
+        {
+            "source": "interval",
+            "target": "delay",
+            "sourceHandle": "interval- ",
+            "targetHandle": "delay-start"
+        },
+        {
+            "source": "delay",
+            "target": "log",
+            "sourceHandle": "delay- ",
+            "targetHandle": "log- "
+        },
+        {
+            "source": "delayTime",
+            "target": "delay",
+            "sourceHandle": "delayTime- ",
+            "targetHandle": "delay-time"
+        }
+    ]
+}
