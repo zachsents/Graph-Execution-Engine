@@ -103,7 +103,7 @@ function prepareSignalSource(nodeId, handleName, nodes, edges) {
 
         // create and return action function -- we bind the node's internal state to the functions
         return nodeType.targets.signals[signalTargetHandle]
-            .action.bind(signalTargetNode.state)(valueTargets, signalSources)
+            .action.bind(signalTargetNode.state)(valueTargets, signalSources).bind(signalTargetNode.state)
     })
 
     // combine into one function to fire at once
