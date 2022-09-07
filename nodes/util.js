@@ -1,3 +1,4 @@
+import { BasicValueSource } from "./commonHandles.js"
 
 export default {
     Bind: {
@@ -12,7 +13,7 @@ export default {
             signals: {
                 signal: {
                     action(valueTargets, signalSources) {
-                        return () => signalSources.out?.(valueTargets.value)
+                        return () => signalSources.out?.(valueTargets.value())
                     }
                 }
             }
@@ -29,18 +30,21 @@ export default {
         description: "Separates a signal and the values it contains.",
         categories: ["Utility"],
         targets: {
-            values: {
-                value: {}
-            },
             signals: {
                 signal: {
-                    action(valueTargets, signalSources) {
-                        return () => signalSources.out?.(valueTargets.value)
+                    action(_, signalSources) {
+                        return function(x) {
+                            this.$ = x
+                            signalSources.out?.()
+                        }
                     }
                 }
-            }
+            },
         },
         sources: {
+            values: {
+                value: BasicValueSource()
+            },
             signals: {
                 out: {}
             }

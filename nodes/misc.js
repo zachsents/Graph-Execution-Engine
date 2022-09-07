@@ -14,7 +14,7 @@ export default {
                 set: {
                     action() {
                         return function (newValue) {
-                            return this.value = newValue
+                            return this.$ = newValue
                         }
                     }
                 }
@@ -26,7 +26,7 @@ export default {
             }
         },
         setup(valueTargets, signalSources) {
-            this.current = valueTargets.initial
+            this.$ = valueTargets.initial()
         },
     }
 }

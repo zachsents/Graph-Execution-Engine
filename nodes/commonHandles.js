@@ -1,4 +1,6 @@
 
 export const BasicValueSource = () => ({
-    get() { return this }
+    get() {
+        return this.$
+    }
 })

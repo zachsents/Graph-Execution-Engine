@@ -16,9 +16,10 @@ export default {
             }
         },
         setup(valueTargets, signalSources) {
-            valueTargets.period[0] > 10 && setInterval(() => {
+            const period = valueTargets.period()[0]
+            period > 10 && setInterval(() => {
                 signalSources[" "]?.()
-            }, valueTargets.period[0])
+            }, period)
         }
     },
     Delay: {
@@ -33,7 +34,7 @@ export default {
             signals: {
                 start: {
                     action: (valueTargets, signalSources) =>
-                        x => setTimeout(() => signalSources[" "]?.(x), valueTargets.time[0])
+                        x => setTimeout(() => signalSources[" "]?.(x), valueTargets.time()[0])
                 }
             }
         },

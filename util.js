@@ -64,17 +64,20 @@ export function prepareValueTargets(nodeId, nodes, edges) {
 function prepareValueTarget(nodeId, handleName, nodes, edges) {
     const connectedValueSources = getConnectedHandles(nodeId, handleName, nodes, edges)
 
-    return connectedValueSources.map(({ node: valueSourceNode, handle: valueSourceHandle }) => {
+    const getters = connectedValueSources.map(({ node: valueSourceNode, handle: valueSourceHandle }) => {
         const nodeType = getNodeType(valueSourceNode)
 
         // recursively prep value targets
         const valueTargets = prepareValueTargets(valueSourceNode.id, nodes, edges)
 
-        // use getter to grab value -- we bind the node's internal state to the functions
-        const getter = nodeType.sources.values[valueSourceHandle]
+        // setup getter to grab value -- we bind the node's internal state to it
+        const getter = () => nodeType.sources.values[valueSourceHandle]
             .get.bind(valueSourceNode.state)(valueTargets)
-        return typeof getter === "function" ? getter.bind(valueSourceNode.state)() : getter     // could be function or just a value
+        return getter
     })
+
+    // combine into one getter function
+    return () => getters.map(getter => getter())
 }
 
 

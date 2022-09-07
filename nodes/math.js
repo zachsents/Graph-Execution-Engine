@@ -27,7 +27,7 @@ export default {
             values: {
                 sum: {
                     get(valueTargets) {
-                        return valueTargets.in.reduce((accum, cur) => accum + cur, 0)
+                        return valueTargets.in().reduce((accum, cur) => accum + cur, 0)
                     }
                 }
             }
