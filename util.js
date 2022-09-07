@@ -1,4 +1,4 @@
-import NodeTypes from "./nodes.js"
+import NodeTypes from "./nodes/index.js"
 
 export function getNode(id, nodes) {
     return nodes.find(node => node.id == id)

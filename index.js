@@ -1,6 +1,6 @@
 import fs from "fs/promises"
 import { getNodeType, prepGraph, prepareSignalSources, prepareValueTargets } from "./util.js"
-import NodeTypes from "./nodes.js"
+import NodeTypes from "./nodes/index.js"
 
 function trySettingUpNode(node, nodes, edges) {
 
@@ -23,7 +23,7 @@ function trySettingUpNode(node, nodes, edges) {
 export async function runFlowFile(graphFile) {
     // load from file
     const { nodes, edges } = JSON.parse(
-        await fs.readFile(filename, "utf-8")
+        await fs.readFile(graphFile, "utf-8")
     )
 
     // run
