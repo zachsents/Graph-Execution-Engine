@@ -1,5 +1,5 @@
 {
-  "name": "nameless-graph-exec",
+  "name": "graph-execution-engine",
   "version": "1.0.0",
   "description": "",
   "main": "./index.js",
